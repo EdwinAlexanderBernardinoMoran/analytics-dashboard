@@ -55,6 +55,14 @@
   --sidebar-accent-foreground: oklch(0.35 0.25 260);
   --sidebar-border: oklch(0.93 0.01 260);
   --sidebar-ring: oklch(0.35 0.25 260);
+  --badge-bar: 217 91% 60%;      /* Color del texto/icono */
+  --badge-bar-bg: 217 91% 97%;   /* Color del fondo */
+  --badge-line: 340 82% 52%;
+  --badge-line-bg: 340 82% 97%;
+  --badge-pie: 38 92% 50%;
+  --badge-pie-bg: 38 92% 95%;
+  --badge-scatter: 160 60% 45%;
+  --badge-scatter-bg: 160 60% 95%;
 }
 
 .dark {
@@ -131,6 +139,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-badge-bar: hsl(var(--badge-bar));
+  --color-badge-bar-bg: hsl(var(--badge-bar-bg));
+  --color-badge-line: hsl(var(--badge-line));
+  --color-badge-line-bg: hsl(var(--badge-line-bg));
+  --color-badge-pie: hsl(var(--badge-pie));
+  --color-badge-pie-bg: hsl(var(--badge-pie-bg));
+  --color-badge-scatter: hsl(var(--badge-scatter));
+  --color-badge-scatter-bg: hsl(var(--badge-scatter-bg));
 }
 
 @layer base {

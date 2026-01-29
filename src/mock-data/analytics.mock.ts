@@ -1,5 +1,5 @@
 
-import type { ChartDataAnalysis } from '@/dashboard/interfaces/chart.interface';
+import type { ChartDataAnalysis } from '@/dashboard/interfaces/chart.interface.interface';
 // import { mockAnalyses } from '@/mock-data/analytics.mock';
 // import type { AnalysisResult } from "@/analysis/interfaces/analysis.interface";
 

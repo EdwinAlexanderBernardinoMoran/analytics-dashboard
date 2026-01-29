@@ -8,17 +8,12 @@ import { AnalyticContext } from '../../context/AnalyticContext';
 import { CustomLoadingState } from "@/components/custom/CustomLoadingState";
 import { useNavigate } from "react-router";
 
-// interface FileUploadProps {
-//     onFileUpload: (file: File) => void;
-// }
-
 export default function FileUploader() {
-    const { isLoading, setLoading, uploadFile } = useContext(AnalyticContext);
+    const { isLoading, uploadFile } = useContext(AnalyticContext);
     const [isDragActive, setIsDragActive] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const navigation = useNavigate();
-
 
     const handleDrag = (event: DragEvent<HTMLDivElement>) => {
 
@@ -38,28 +33,26 @@ export default function FileUploader() {
         setIsDragActive(false);
 
         const file = validateFile(event.dataTransfer.files);
-        if (!file) return;
-
-        handleFile(file);
+        handleFile(file!);
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = validateFile(event.target.files);
-
-        if (!file) {
-            event.target.value = ""; // solo si el archivo fue inválido
-            return;
-        }
-
-        handleFile(file);
+        handleFile(file!);
     };
 
     const handleFile = async (file: File) => {
+
         setSelectedFile(file);
 
-        setLoading(true);
-        await uploadFile(file)
-        setLoading(false);
+        const response = await uploadFile(file);
+
+        if (!response) {
+            setSelectedFile(null);
+            return;
+        };
+
+        setSelectedFile(null);
         navigation('/analysis');
     };
 

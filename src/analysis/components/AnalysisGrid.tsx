@@ -1,4 +1,4 @@
-import type { ChartDataAnalysis } from "@/dashboard/interfaces/chart.interface";
+import type { ChartDataAnalysis } from "@/dashboard/interfaces/chart.interface.interface";
 import { AnalysisGridCard } from "./AnalysisGridCard";
 
 interface AnalysisGridProps {

@@ -1,5 +1,5 @@
-import type { ChartDataContext } from "@/analysis/interfaces/analysis.interface";
 import { Trash2 } from "lucide-react";
+import type { ChartDataContext } from "../interfaces/charts-context.interface";
 
 interface DashboardCardProps {
     chart: ChartDataContext;
@@ -19,9 +19,6 @@ export const DashboardCard = ({ chart, ChartComponent, onRemoveCard }: Dashboard
                     <h3 className="font-semibold text-foreground">
                         {chart.title}
                     </h3>
-                    {/* <p className="mt-1 text-sm text-muted-foreground">
-                        {card.description}
-                    </p> */}
                 </div>
                 <button
                     onClick={() => onRemoveCard(chart.title)}

@@ -1,7 +1,9 @@
 import { getChartData } from "@/analysis/actions/post-chart-sugesstion";
-import { postFileUpload } from "@/analysis/actions/post-file-upload.action";
-import type { ChartDataLineContext, ChartDataPieContext } from "@/analysis/interfaces/analysis.interface";
-import type { ChartDataAnalysis, ChartParams } from "@/dashboard/interfaces/chart.interface";
+import type { ChartDataAnalysis, ChartParams } from "@/dashboard/interfaces/chart.interface.interface";
+import type { ChartDataContext } from "@/dashboard/interfaces/charts-context.interface";
+import { mockAnalyses } from "@/mock-data/analytics.mock";
+import { postFileUpload } from "@/uploader/actions/post-file-upload.action";
+import { ToastError } from "@/utils/ToastError";
 import { createContext, useState, type PropsWithChildren } from "react"
 
 interface AnalyticContextProps {
@@ -10,11 +12,11 @@ interface AnalyticContextProps {
     isLoading: boolean;
     error: string | null;
     counChartSuggestions: number;
-    chartData: (ChartDataLineContext | ChartDataPieContext)[];
+    chartData: ChartDataContext[];
 
     // Methods
     setLoading: (value: boolean) => void;
-    uploadFile: (file: File) => Promise<void>;
+    uploadFile: (file: File) => Promise<boolean>;
     getChartData: (data: ChartDataAnalysis) => void;
     setCountChartSuggestion: () => void;
 }
@@ -23,8 +25,8 @@ export const AnalyticContext = createContext({} as AnalyticContextProps);
 
 export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
 
-    const [analyses, setAnalyses] = useState<ChartDataAnalysis[]>([]);
-    const [chartData, setChartData] = useState<(ChartDataLineContext | ChartDataPieContext)[]>([]);
+    const [analyses, setAnalyses] = useState<ChartDataAnalysis[]>(mockAnalyses);
+    const [chartData, setChartData] = useState<ChartDataContext[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [countChartSuggestion, setCountChartSuggestion] = useState(0);
@@ -34,11 +36,24 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
     };
 
     const handleUpload = async (file: File) => {
+        try {
+            setIsLoading(true);
+            setError(null);
 
-        const formData = new FormData();
-        formData.append('file', file);
-        const analysisResult = await postFileUpload(formData);
-        setAnalyses(analysisResult);
+            const formData = new FormData();
+            formData.append('file', file);
+            const analysisResult = await postFileUpload(formData);
+            setAnalyses(analysisResult);
+            return true;
+        } catch (err) {
+            const errorMessage = err instanceof Error ? err.message : 'Error uploading the file';
+
+            ToastError('Oops, something went wrong.', errorMessage);
+            setError(errorMessage);
+            return false;
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     const handleGetChartData = async (data: ChartDataAnalysis) => {
@@ -60,7 +75,6 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
     const handleSetCountChartSuggestion = () => {
         setCountChartSuggestion((prev) => prev + 1);
     }
-
 
     return <AnalyticContext value={{
         // state

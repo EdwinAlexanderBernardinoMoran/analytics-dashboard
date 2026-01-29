@@ -1,4 +1,4 @@
-import type { ChartType } from "@/dashboard/interfaces/chart.interface";
+import type { ChartType } from "@/dashboard/interfaces/chart.interface.interface";
 
 export interface AnalyticResponse {
     status_code: number;

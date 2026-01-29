@@ -3,7 +3,7 @@ import { AnalysisResultsHeader } from '../components/AnalysisResultsHeader';
 import { AnalysisCardCount } from '../components/AnalysisCardCount';
 import { AnalysisGrid } from '../components/AnalysisGrid';
 import { AnalyticContext } from '@/context/AnalyticContext';
-import type { ChartDataAnalysis } from '@/dashboard/interfaces/chart.interface';
+import type { ChartDataAnalysis } from '@/dashboard/interfaces/chart.interface.interface';
 
 export function AnalysisPage() {
     const { analyses, counChartSuggestions, setCountChartSuggestion, getChartData } = useContext(AnalyticContext);
@@ -24,31 +24,6 @@ export function AnalysisPage() {
         setAddedCards(prev => new Set([...prev, chartSuggestionId]));
         setCountChartSuggestion();
         getChartData(chartSuggestion);
-
-
-
-
-
-        // console.log(chartSuggestionId);
-        // console.log(addedCards);
-
-
-
-
-
-
-        // console.log(chartSuggestion);
-
-
-        // Reset animation after 2 seconds
-        // setTimeout(() => {
-        //     setAddedCards(prev => {
-        //         const newSet = new Set(prev);
-        //         newSet.add(chartSuggestion.id);
-        //         return newSet;
-        //     });
-        // }, 2000);
-
     };
 
     return (

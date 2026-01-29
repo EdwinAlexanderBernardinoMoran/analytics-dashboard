@@ -1,9 +1,9 @@
-import type { ApiChartResponse } from "../interfaces/charts-pie-response.interface";
-import type { Chart } from "../interfaces/chart.interface";
+import type { Chart } from "@/dashboard/interfaces/chart.interface.interface";
+import type { ApiChartsResponse } from "@/dashboard/interfaces/charts-response.interface";
+
 
 export class ChartMapper {
-    static mapRestChartResponseToChartData(item: ApiChartResponse): Chart {
-        // Map all chart_suggestions from the response and add unique IDs
+    static mapRestChartResponseToChartData(item: ApiChartsResponse): Chart {
         return {
             chart_type: item.data.chart_type,
             datasets: item.data.datasets

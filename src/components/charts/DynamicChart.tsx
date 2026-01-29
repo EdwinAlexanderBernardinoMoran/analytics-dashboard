@@ -13,8 +13,8 @@ import {
 } from 'chart.js';
 import { Line, Bar, Pie } from 'react-chartjs-2';
 import { shouldGroupData, groupDatasetsByMonth, groupByMonth } from '@/utils/chartDataProcessing';
-import type { Datasets } from '@/dashboard/interfaces/charts-pie-response.interface';
-import type { ChartType } from '@/dashboard/interfaces/chart.interface';
+import type { Datasets } from '@/dashboard/interfaces/charts-response.interface';
+import type { ChartType } from '@/dashboard/interfaces/chart.interface.interface';
 
 // Register Chart.js components
 ChartJS.register(
@@ -41,6 +41,15 @@ const COLORS = [
     'rgba(244, 63, 94, 0.8)',    // rose
     'rgba(168, 85, 247, 0.8)',   // purple
     'rgba(234, 179, 8, 0.8)',    // yellow
+    'rgba(34, 197, 94, 0.8)',    // emerald
+    'rgba(14, 165, 233, 0.8)',   // sky
+    'rgba(236, 72, 153, 0.8)',   // pink
+    'rgba(249, 115, 22, 0.8)',   // amber
+    'rgba(37, 99, 235, 0.8)',   // indigo
+    'rgba(6, 182, 212, 0.8)',   // cyan
+    'rgba(251, 191, 36, 0.8)',   // yellow-400
+    'rgba(16, 185, 129, 0.8)',   // green-400
+    'rgba(239, 68, 68, 0.8)',    // red-500
 ];
 
 const BORDER_COLORS = [
@@ -50,6 +59,15 @@ const BORDER_COLORS = [
     'rgba(244, 63, 94, 1)',
     'rgba(168, 85, 247, 1)',
     'rgba(234, 179, 8, 1)',
+    'rgba(34, 197, 94, 1)',
+    'rgba(14, 165, 233, 1)',
+    'rgba(236, 72, 153, 1)',
+    'rgba(249, 115, 22, 1)',
+    'rgba(37, 99, 235, 0.8)',
+    'rgba(6, 182, 212, 0.8)',
+    'rgba(251, 191, 36, 0.8)',
+    'rgba(16, 185, 129, 0.8)',
+    'rgba(239, 68, 68, 0.8)',
 ];
 
 export default function DynamicChart({ chart_type, datasets }: DynamicChartProps) {

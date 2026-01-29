@@ -1,6 +1,6 @@
-import type { ChartDataLineContext, ChartDataPieContext } from "@/analysis/interfaces/analysis.interface";
+import type { ChartDataCartesianContext, ChartDataPieContext } from "@/dashboard/interfaces/charts-context.interface";
 
-export const mocksCharts: (ChartDataLineContext | ChartDataPieContext)[] = [
+export const mocksCharts: (ChartDataCartesianContext | ChartDataPieContext)[] = [
     {
         title: "Ventas Totales por Tipo de Producto",
         chart_type: "line",

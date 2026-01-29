@@ -1,5 +1,5 @@
 import type { Parameters } from "@/analysis/interfaces/analysis-response.interface";
-import type { Datasets } from "./charts-pie-response.interface";
+import type { Datasets } from "./charts-response.interface";
 
 export type ChartType = 'bar' | 'line' | 'pie' | 'scatter';
 
