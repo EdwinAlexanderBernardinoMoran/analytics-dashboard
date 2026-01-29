@@ -8,7 +8,7 @@ interface HeaderProps {
   onUploadClick: () => void;
 }
 
-export default function Header({
+export default function CustomHeader({
   currentState,
   dashboardCardsCount,
   onDashboardClick,
@@ -38,7 +38,7 @@ export default function Header({
                 Nuevo Análisis
               </button>
             )}
-            
+
             {dashboardCardsCount > 0 && (
               <button
                 onClick={onDashboardClick}
@@ -82,7 +82,7 @@ export default function Header({
                 Nuevo Análisis
               </button>
             )}
-            
+
             {dashboardCardsCount > 0 && (
               <button
                 onClick={() => {

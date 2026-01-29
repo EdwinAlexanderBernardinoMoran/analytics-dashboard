@@ -1,59 +1,101 @@
-import {
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-  Legend,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+// import {
+//     Chart as ChartJS,
+//     CategoryScale,
+//     LinearScale,
+//     BarElement,
+//     Title,
+//     Tooltip,
+//     Legend,
+//     type ChartOptions,
+// } from 'chart.js';
+// import { Bar } from 'react-chartjs-2';
 
-interface PerformanceChartProps {
-  data: {
-    labels: string[];
-    values: number[];
-  };
-}
+// ChartJS.register(
+//     CategoryScale,
+//     LinearScale,
+//     BarElement,
+//     Title,
+//     Tooltip,
+//     Legend
+// );
 
-export default function PerformanceChart({ data }: PerformanceChartProps) {
-  const chartData = data.labels.map((label, index) => ({
-    name: label,
-    value: data.values[index],
-  }));
+// interface PerformanceChartProps {
+//     data: {
+//         labels: string[];
+//         values: number[];
+//     };
+// }
 
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <RadarChart data={chartData}>
-        <PolarGrid stroke="hsl(var(--border))" />
-        <PolarAngleAxis
-          dataKey="name"
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <PolarRadiusAxis
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <Radar
-          name="KPIs"
-          dataKey="value"
-          stroke="oklch(0.62 0.25 40)"
-          fill="oklch(0.62 0.25 40)"
-          fillOpacity={0.6}
-          dot={{ fill: 'oklch(0.62 0.25 40)', r: 4 }}
-          activeDot={{ r: 6 }}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            color: 'hsl(var(--foreground))',
-          }}
-        />
-        <Legend />
-      </RadarChart>
-    </ResponsiveContainer>
-  );
-}
+// export default function PerformanceChart({ data }: PerformanceChartProps) {
+//     const chartData = {
+//         labels: data.labels,
+//         datasets: [
+//             {
+//                 label: 'Desempeño',
+//                 data: data.values,
+//                 backgroundColor: 'rgba(168, 85, 247, 0.8)',
+//                 borderColor: 'rgba(168, 85, 247, 1)',
+//                 borderWidth: 1,
+//                 borderRadius: 8,
+//             },
+//         ],
+//     };
+
+//     const options: ChartOptions<'bar'> = {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         indexAxis: 'y' as const,
+//         plugins: {
+//             legend: {
+//                 display: true,
+//                 position: 'top' as const,
+//                 labels: {
+//                     color: 'hsl(var(--foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//             tooltip: {
+//                 backgroundColor: 'hsl(var(--card))',
+//                 titleColor: 'hsl(var(--foreground))',
+//                 bodyColor: 'hsl(var(--foreground))',
+//                 borderColor: 'hsl(var(--border))',
+//                 borderWidth: 1,
+//                 padding: 12,
+//             },
+//         },
+//         scales: {
+//             x: {
+//                 beginAtZero: true,
+//                 max: 100,
+//                 grid: {
+//                     color: 'hsl(var(--border))',
+//                 },
+//                 ticks: {
+//                     color: 'hsl(var(--muted-foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//             y: {
+//                 grid: {
+//                     display: false,
+//                 },
+//                 ticks: {
+//                     color: 'hsl(var(--muted-foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//         },
+//     };
+
+//     return (
+//         <div style={{ height: '300px', width: '100%' }}>
+//             <Bar data={chartData} options={options} />
+//         </div>
+//     );
+// }

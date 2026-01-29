@@ -1,64 +1,107 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   type ChartOptions,
+// } from 'chart.js';
+// import { Line } from 'react-chartjs-2';
 
-interface TrendChartProps {
-  data: {
-    labels: string[];
-    values: number[];
-  };
-}
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend
+// );
 
-export default function TrendChart({ data }: TrendChartProps) {
-  const chartData = data.labels.map((label, index) => ({
-    name: label,
-    value: data.values[index],
-  }));
+// interface TrendChartProps {
+//   data: {
+//     labels: string[];
+//     values: number[];
+//   };
+// }
 
-  // Get colors from CSS variables
-  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-1').trim();
-  const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-2').trim();
+// export default function TrendChart({ data }: TrendChartProps) {
+//   const chartData = {
+//     labels: data.labels,
+//     datasets: [
+//       {
+//         label: 'Tendencia',
+//         data: data.values,
+//         borderColor: 'rgba(59, 130, 246, 1)',
+//         backgroundColor: 'rgba(59, 130, 246, 0.1)',
+//         borderWidth: 2,
+//         tension: 0.4,
+//         pointRadius: 4,
+//         pointHoverRadius: 6,
+//         pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+//         pointBorderColor: '#fff',
+//         pointBorderWidth: 2,
+//         fill: true,
+//       },
+//     ],
+//   };
 
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={chartData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-        <XAxis
-          dataKey="name"
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <YAxis
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            color: 'hsl(var(--foreground))',
-          }}
-          cursor={{ stroke: 'hsl(var(--primary))' }}
-        />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="value"
-          stroke="oklch(0.62 0.25 40)"
-          strokeWidth={2}
-          dot={{ fill: 'oklch(0.62 0.25 40)', r: 4 }}
-          activeDot={{ r: 6 }}
-          name="Tendencia"
-        />
-      </LineChart>
-    </ResponsiveContainer>
-  );
-}
+//   const options: ChartOptions<'line'> = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     plugins: {
+//       legend: {
+//         display: true,
+//         position: 'top' as const,
+//         labels: {
+//           color: 'hsl(var(--foreground))',
+//           font: {
+//             size: 12,
+//           },
+//         },
+//       },
+//       tooltip: {
+//         backgroundColor: 'hsl(var(--card))',
+//         titleColor: 'hsl(var(--foreground))',
+//         bodyColor: 'hsl(var(--foreground))',
+//         borderColor: 'hsl(var(--border))',
+//         borderWidth: 1,
+//         padding: 12,
+//       },
+//     },
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         grid: {
+//           color: 'hsl(var(--border))',
+//         },
+//         ticks: {
+//           color: 'hsl(var(--muted-foreground))',
+//           font: {
+//             size: 12,
+//           },
+//         },
+//       },
+//       x: {
+//         grid: {
+//           color: 'hsl(var(--border))',
+//         },
+//         ticks: {
+//           color: 'hsl(var(--muted-foreground))',
+//           font: {
+//             size: 12,
+//           },
+//         },
+//       },
+//     },
+//   };
+
+//   return (
+//     <div style={{ height: '300px', width: '100%' }}>
+//       <Line data={chartData} options={options} />
+//     </div>
+//   );
+// }

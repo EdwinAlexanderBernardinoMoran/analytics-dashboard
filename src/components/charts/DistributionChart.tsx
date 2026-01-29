@@ -1,60 +1,89 @@
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+// import {
+//   Chart as ChartJS,
+//   ArcElement,
+//   Tooltip,
+//   Legend,
+//   type ChartOptions,
+// } from 'chart.js';
+// import { Pie } from 'react-chartjs-2';
 
-interface DistributionChartProps {
-  data: {
-    labels: string[];
-    values: number[];
-  };
-}
+// ChartJS.register(ArcElement, Tooltip, Legend);
 
-const COLORS = [
-  'oklch(0.62 0.25 40)',
-  'oklch(0.50 0.22 280)',
-  'oklch(0.45 0.20 200)',
-  'oklch(0.60 0.23 180)',
-];
+// interface DistributionChartProps {
+//   data: {
+//     labels: string[];
+//     values: number[];
+//   };
+// }
 
-export default function DistributionChart({ data }: DistributionChartProps) {
-  const chartData = data.labels.map((label, index) => ({
-    name: label,
-    value: data.values[index],
-  }));
+// const COLORS = [
+//   'rgba(59, 130, 246, 0.8)',
+//   'rgba(16, 185, 129, 0.8)',
+//   'rgba(251, 146, 60, 0.8)',
+//   'rgba(244, 63, 94, 0.8)',
+//   'rgba(168, 85, 247, 0.8)',
+//   'rgba(234, 179, 8, 0.8)',
+// ];
 
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <PieChart>
-        <Pie
-          data={chartData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={(entry) => `${entry.name}: ${entry.value}%`}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            color: 'hsl(var(--foreground))',
-          }}
-          formatter={(value) => `${value}%`}
-        />
-        <Legend />
-      </PieChart>
-    </ResponsiveContainer>
-  );
-}
+// const BORDER_COLORS = [
+//   'rgba(59, 130, 246, 1)',
+//   'rgba(16, 185, 129, 1)',
+//   'rgba(251, 146, 60, 1)',
+//   'rgba(244, 63, 94, 1)',
+//   'rgba(168, 85, 247, 1)',
+//   'rgba(234, 179, 8, 1)',
+// ];
+
+// export default function DistributionChart({ data }: DistributionChartProps) {
+//   const chartData = {
+//     labels: data.labels,
+//     datasets: [
+//       {
+//         label: 'Distribución',
+//         data: data.values,
+//         backgroundColor: COLORS,
+//         borderColor: BORDER_COLORS,
+//         borderWidth: 2,
+//       },
+//     ],
+//   };
+
+//   const options: ChartOptions<'pie'> = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     plugins: {
+//       legend: {
+//         display: true,
+//         position: 'right' as const,
+//         labels: {
+//           color: 'hsl(var(--foreground))',
+//           font: {
+//             size: 12,
+//           },
+//           padding: 15,
+//         },
+//       },
+//       tooltip: {
+//         backgroundColor: 'hsl(var(--card))',
+//         titleColor: 'hsl(var(--foreground))',
+//         bodyColor: 'hsl(var(--foreground))',
+//         borderColor: 'hsl(var(--border))',
+//         borderWidth: 1,
+//         padding: 12,
+//         callbacks: {
+//           label: function (context) {
+//             const label = context.label || '';
+//             const value = context.parsed || 0;
+//             return `${label}: ${value}%`;
+//           }
+//         }
+//       },
+//     },
+//   };
+
+//   return (
+//     <div style={{ height: '300px', width: '100%' }}>
+//       <Pie data={chartData} options={options} />
+//     </div>
+//   );
+// }

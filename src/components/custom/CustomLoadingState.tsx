@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 
 const stages = [
@@ -9,7 +7,7 @@ const stages = [
   'Optimizando resultados...',
 ];
 
-export default function LoadingState() {
+export function CustomLoadingState() {
   const [currentStage, setCurrentStage] = useState(0);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ export default function LoadingState() {
       <div className="relative h-20 w-20">
         {/* Outer ring */}
         <div className="absolute inset-0 rounded-full border-4 border-border"></div>
-        
+
         {/* Rotating spinner */}
         <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-accent border-r-accent"></div>
 
@@ -69,11 +67,10 @@ export default function LoadingState() {
         {stages.map((_, index) => (
           <div
             key={index}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index <= currentStage
-                ? 'w-6 bg-accent'
-                : 'w-2 bg-border'
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 ${index <= currentStage
+              ? 'w-6 bg-accent'
+              : 'w-2 bg-border'
+              }`}
           ></div>
         ))}
       </div>

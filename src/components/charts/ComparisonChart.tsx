@@ -1,65 +1,110 @@
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+// import {
+//     Chart as ChartJS,
+//     CategoryScale,
+//     LinearScale,
+//     BarElement,
+//     Title,
+//     Tooltip,
+//     Legend,
+//     type ChartOptions,
+// } from 'chart.js';
+// import { Bar } from 'react-chartjs-2';
 
-interface ComparisonChartProps {
-  data: {
-    labels: string[];
-    series: Array<{
-      name: string;
-      values: number[];
-    }>;
-  };
-}
+// ChartJS.register(
+//     CategoryScale,
+//     LinearScale,
+//     BarElement,
+//     Title,
+//     Tooltip,
+//     Legend
+// );
 
-const COLORS = ['oklch(0.62 0.25 40)', 'oklch(0.50 0.22 280)'];
+// interface ComparisonChartProps {
+//     data: {
+//         labels: string[];
+//         series: {
+//             name: string;
+//             values: number[];
+//         }[];
+//     };
+// }
 
-export default function ComparisonChart({ data }: ComparisonChartProps) {
-  const chartData = data.labels.map((label, index) => ({
-    name: label,
-    ...Object.fromEntries(
-      data.series.map(series => [series.name, series.values[index]])
-    ),
-  }));
+// const COLORS = [
+//     'rgba(59, 130, 246, 0.8)',
+//     'rgba(16, 185, 129, 0.8)',
+// ];
 
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={chartData}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-        <XAxis
-          dataKey="name"
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <YAxis
-          stroke="hsl(var(--muted-foreground))"
-          style={{ fontSize: '12px' }}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'hsl(var(--card))',
-            border: '1px solid hsl(var(--border))',
-            borderRadius: '8px',
-            color: 'hsl(var(--foreground))',
-          }}
-        />
-        <Legend />
-        {data.series.map((series, index) => (
-          <Bar
-            key={series.name}
-            dataKey={series.name}
-            fill={COLORS[index % COLORS.length]}
-            radius={[4, 4, 0, 0]}
-          />
-        ))}
-      </BarChart>
-    </ResponsiveContainer>
-  );
-}
+// const BORDER_COLORS = [
+//     'rgba(59, 130, 246, 1)',
+//     'rgba(16, 185, 129, 1)',
+// ];
+
+// export default function ComparisonChart({ data }: ComparisonChartProps) {
+//     const chartData = {
+//         labels: data.labels,
+//         datasets: data.series.map((serie, index) => ({
+//             label: serie.name,
+//             data: serie.values,
+//             backgroundColor: COLORS[index % COLORS.length],
+//             borderColor: BORDER_COLORS[index % BORDER_COLORS.length],
+//             borderWidth: 1,
+//             borderRadius: 8,
+//         })),
+//     };
+
+//     const options: ChartOptions<'bar'> = {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         plugins: {
+//             legend: {
+//                 display: true,
+//                 position: 'top' as const,
+//                 labels: {
+//                     color: 'hsl(var(--foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//             tooltip: {
+//                 backgroundColor: 'hsl(var(--card))',
+//                 titleColor: 'hsl(var(--foreground))',
+//                 bodyColor: 'hsl(var(--foreground))',
+//                 borderColor: 'hsl(var(--border))',
+//                 borderWidth: 1,
+//                 padding: 12,
+//             },
+//         },
+//         scales: {
+//             y: {
+//                 beginAtZero: true,
+//                 grid: {
+//                     color: 'hsl(var(--border))',
+//                 },
+//                 ticks: {
+//                     color: 'hsl(var(--muted-foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//             x: {
+//                 grid: {
+//                     display: false,
+//                 },
+//                 ticks: {
+//                     color: 'hsl(var(--muted-foreground))',
+//                     font: {
+//                         size: 12,
+//                     },
+//                 },
+//             },
+//         },
+//     };
+
+//     return (
+//         <div style={{ height: '300px', width: '100%' }}>
+//             <Bar data={chartData} options={options} />
+//         </div>
+//     );
+// }

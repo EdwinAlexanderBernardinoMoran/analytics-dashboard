@@ -9,7 +9,7 @@ interface BreadcrumbProps {
   items: BreadcrumbItem[];
 }
 
-export default function Breadcrumb({ items }: BreadcrumbProps) {
+export default function CustomBreadcrumb({ items }: BreadcrumbProps) {
   return (
     <nav className="flex items-center gap-2 text-sm">
       {items.map((item, index) => (
