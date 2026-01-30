@@ -1,6 +1,6 @@
 import { createContext, useState, type PropsWithChildren } from "react";
 
-import { getChartData } from "@/analysis/actions/post-chart-sugesstion";
+import { getChartData } from "@/analysis/actions/get-chart-sugesstion";
 import type { ChartDataAnalysis, ChartParams } from "@/dashboard/interfaces/chart.interface.interface";
 import type { ChartDataContext } from "@/dashboard/interfaces/charts-context.interface";
 import { postFileUpload } from "@/uploader/actions/post-file-upload.action";

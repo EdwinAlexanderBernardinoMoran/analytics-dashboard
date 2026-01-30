@@ -14,7 +14,7 @@ export interface ChartParams {
     dataframe_id: string;
     chart_type: ChartType;
     x_axis: string;
-    y_axis: string | string[];
+    y_axis: string[] | string;
 }
 
 // Interface displaying the results of suggestions from the file information charts 
