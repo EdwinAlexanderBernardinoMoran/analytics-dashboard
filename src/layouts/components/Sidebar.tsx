@@ -59,8 +59,12 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
 
   return (
     <aside
-      className={`fixed left-0 top-0 z-40 h-screen border-r border-border bg-sidebar transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-56'
+      className={`fixed left-0 top-0 z-40 h-dvh border-r border-border bg-sidebar transition-all duration-300 ease-in-out overflow-y-auto ${isCollapsed ? 'w-20' : 'w-56'
         }`}
+      style={{
+        position: 'fixed',
+        WebkitOverflowScrolling: 'touch'
+      }}
     >
       {/* Header */}
       <HeaderSidebar isCollapsed={isCollapsed} />

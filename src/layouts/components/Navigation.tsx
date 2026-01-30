@@ -14,20 +14,15 @@ export const Navigation = ({ navItems, isActive, isCollapsed }: NavigationProps)
                 const Icon = item.icon;
 
                 return (
-                    <button
-                        key={item.id}
-
-                        className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-colors ${isActive(item.url)
-                            ? 'bg-sidebar-accent text-badge-bar'
-                            : 'text-gray-700 hover:bg-sidebar-accent hover:text-badge-bar'
-                            }`}
-                    >
-
+                    <Link key={item.id} to={item.url} className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-colors ${isActive(item.url)
+                        ? 'bg-sidebar-accent text-badge-bar'
+                        : 'text-gray-700 hover:bg-sidebar-accent hover:text-badge-bar'
+                        }`}>
                         <Icon className="h-5 w-5 shrink-0" />
                         {!isCollapsed && <span className="text-sm font-medium">
-                            <Link to={item.url}>{item.label}</Link>
+                            {item.label}
                         </span>}
-                    </button>
+                    </Link>
                 );
             })}
         </nav>
