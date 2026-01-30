@@ -1,5 +1,5 @@
 import { Upload, BarChart3, LineChart } from 'lucide-react';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useLocation } from 'react-router';
 import { HeaderSidebar } from './HeaderSidebar';
 import { Navigation } from './Navigation';
@@ -13,17 +13,17 @@ export interface NavItem {
   url: string;
 }
 
-export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+interface SidebarProps {
+  isCollapsed: boolean;
+  setIsCollapsed: (value: boolean) => void;
+}
+
+export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
   const { analyses, chartData } = useContext(AnalyticContext);
 
   const { pathname } = useLocation()
   const isActive = (path: string) => {
     return pathname === path
-  }
-
-  const handleCollapse = (): void => {
-    setIsCollapsed(!isCollapsed);
   }
 
   const allNavItems: NavItem[] = [
@@ -69,7 +69,7 @@ export default function Sidebar() {
       <Navigation navItems={navItems} isCollapsed={isCollapsed} isActive={isActive} />
 
       {/* Bottom Section */}
-      <ButtonCollapse isCollapsed={isCollapsed} onCollapse={handleCollapse} />
+      <ButtonCollapse isCollapsed={isCollapsed} onCollapse={() => setIsCollapsed(!isCollapsed)} />
     </aside>
   );
 }
