@@ -4,9 +4,8 @@ import { ChartsPage } from "@/dashboard/pages/ChartsPage";
 import { Layout } from "@/layouts/Layout";
 import FileUploader from "@/uploader/pages/FileUploader";
 import { createBrowserRouter } from "react-router";
-
-// const SearchPage = lazy(() => import('@/heroes/pages/search/SearchPage'))
-// const AdminPage = lazy(() => import('@/admin/pages/AdminPage'))
+import { AnalysisPrivateRoute } from "./AnalysisPrivateRoute";
+import { DashboardPrivateRoute } from "./DashboardPrivateRoute";
 
 export const appRouter = createBrowserRouter([
     {
@@ -19,11 +18,11 @@ export const appRouter = createBrowserRouter([
             },
             {
                 path: 'analysis',
-                element: <AnalysisPage />
+                element: <AnalysisPrivateRoute element={<AnalysisPage />} />
             },
             {
                 path: 'dashboard',
-                element: <ChartsPage />
+                element: <DashboardPrivateRoute element={<ChartsPage />} />
             },
         ]
     },

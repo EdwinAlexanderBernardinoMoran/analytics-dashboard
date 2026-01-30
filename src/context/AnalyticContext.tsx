@@ -1,10 +1,10 @@
+import { createContext, useState, type PropsWithChildren } from "react";
+
 import { getChartData } from "@/analysis/actions/post-chart-sugesstion";
 import type { ChartDataAnalysis, ChartParams } from "@/dashboard/interfaces/chart.interface.interface";
 import type { ChartDataContext } from "@/dashboard/interfaces/charts-context.interface";
-import { mockAnalyses } from "@/mock-data/analytics.mock";
 import { postFileUpload } from "@/uploader/actions/post-file-upload.action";
 import { ToastError } from "@/utils/ToastError";
-import { createContext, useState, type PropsWithChildren } from "react"
 
 interface AnalyticContextProps {
     // state
@@ -25,7 +25,7 @@ export const AnalyticContext = createContext({} as AnalyticContextProps);
 
 export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
 
-    const [analyses, setAnalyses] = useState<ChartDataAnalysis[]>(mockAnalyses);
+    const [analyses, setAnalyses] = useState<ChartDataAnalysis[]>([]);
     const [chartData, setChartData] = useState<ChartDataContext[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);

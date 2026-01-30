@@ -1,9 +1,10 @@
 import { Upload, BarChart3, LineChart } from 'lucide-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router';
 import { HeaderSidebar } from './HeaderSidebar';
 import { Navigation } from './Navigation';
 import { ButtonCollapse } from './ButtonCollapse';
+import { AnalyticContext } from '@/context/AnalyticContext';
 
 export interface NavItem {
   id: string;
@@ -14,6 +15,7 @@ export interface NavItem {
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { analyses, chartData } = useContext(AnalyticContext);
 
   const { pathname } = useLocation()
   const isActive = (path: string) => {
@@ -24,7 +26,7 @@ export default function Sidebar() {
     setIsCollapsed(!isCollapsed);
   }
 
-  const navItems: NavItem[] = [
+  const allNavItems: NavItem[] = [
     {
       id: 'upload',
       label: 'Upload file',
@@ -44,6 +46,16 @@ export default function Sidebar() {
       url: '/dashboard',
     },
   ];
+
+  const navItems = allNavItems.filter(item => {
+    if (item.id === 'analysis') {
+      return analyses.length > 0;
+    }
+    if (item.id === 'dashboard') {
+      return chartData.length > 0;
+    }
+    return true;
+  });
 
   return (
     <aside

@@ -1,12 +1,13 @@
 import { useContext, type ChangeEvent, type DragEvent } from "react"
-
 import { useState, useRef } from 'react';
-import { Upload, File, X } from 'lucide-react';
-import { validateFile } from "@/utils/fileValidation";
+import { useNavigate } from "react-router";
+
 import { CustomJombotron } from "@/components/custom/CustomJombotron";
 import { AnalyticContext } from '../../context/AnalyticContext';
 import { CustomLoadingState } from "@/components/custom/CustomLoadingState";
-import { useNavigate } from "react-router";
+import { Upload, File, X } from 'lucide-react';
+
+import { validateFile } from "@/utils/fileValidation";
 
 export default function FileUploader() {
     const { isLoading, uploadFile } = useContext(AnalyticContext);
@@ -33,12 +34,17 @@ export default function FileUploader() {
         setIsDragActive(false);
 
         const file = validateFile(event.dataTransfer.files);
-        handleFile(file!);
+        if (!file) return;
+        handleFile(file);
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = validateFile(event.target.files);
-        handleFile(file!);
+        if (!file) {
+            event.target.value = "";
+            return;
+        }
+        handleFile(file);
     };
 
     const handleFile = async (file: File) => {
