@@ -41,7 +41,7 @@ export const AnalysisGridCard = ({ item, addedCards, handleAddCard }: AnalysisGr
 
     return (
         <div
-            className={`group relative rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/20 hover:shadow-md ${isAdded ? 'ring-2 ring-accent' : ''
+            className={`group relative rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/20 hover:shadow-md ${isAdded ? 'ring-2 ring-gray-300' : ''
                 }`}
         >
             {/* Type Badge */}
@@ -67,8 +67,8 @@ export const AnalysisGridCard = ({ item, addedCards, handleAddCard }: AnalysisGr
                 <button
                     onClick={() => handleAddCard(item)}
                     className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium transition-all ${isAdded
-                        ? 'bg-accent text-accent-foreground'
-                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/90'
+                        ? 'bg-secondary/35 text-badge-bar cursor-not-allowed'
+                        : 'bg-secondary text-badge-bar hover:bg-secondary/90'
                         } active:scale-95`}
                     disabled={isAdded}
                 >

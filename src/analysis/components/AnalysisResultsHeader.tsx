@@ -1,15 +1,16 @@
 import { CustomJombotron } from '@/components/custom/CustomJombotron';
 
+import { Link } from "react-router";
+
+
 interface AnalysisResultsHeaderProps {
     analysesCount: number;
     dashboardCardsCount: number;
-    onGoToDashboard: () => void;
 }
 
 export function AnalysisResultsHeader({
     analysesCount,
-    dashboardCardsCount,
-    onGoToDashboard,
+    dashboardCardsCount
 }: AnalysisResultsHeaderProps) {
     return (
         <div className="space-y-3">
@@ -22,12 +23,8 @@ export function AnalysisResultsHeader({
                 </div>
 
                 {dashboardCardsCount > 0 && (
-                    <button
-                        onClick={onGoToDashboard}
-                        className="whitespace-nowrap rounded-lg bg-primary px-6 py-2 font-medium text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
-                    >
-                        Ver Dashboard ({dashboardCardsCount})
-                    </button>
+
+                    <Link to="/dashboard" className="whitespace-nowrap rounded-lg bg-badge-bar px-6 py-2 font-medium text-primary-foreground transition-all hover:bg-badge-bar/70 active:scale-95">Ir Panel</Link>
                 )}
             </div>
         </div>

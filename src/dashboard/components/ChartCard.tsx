@@ -1,13 +1,11 @@
-import { Trash2 } from "lucide-react";
 import type { ChartDataContext } from "../interfaces/charts-context.interface";
 
 interface DashboardCardProps {
     chart: ChartDataContext;
     ChartComponent: React.ComponentType<any>;
-    onRemoveCard: (id: string) => void;
 }
 
-export const DashboardCard = ({ chart, ChartComponent, onRemoveCard }: DashboardCardProps) => {
+export const DashboardCard = ({ chart, ChartComponent }: DashboardCardProps) => {
 
     return (
         <div
@@ -20,12 +18,6 @@ export const DashboardCard = ({ chart, ChartComponent, onRemoveCard }: Dashboard
                         {chart.title}
                     </h3>
                 </div>
-                <button
-                    onClick={() => onRemoveCard(chart.title)}
-                    className="rounded-lg p-2 text-muted-foreground transition-all hover:bg-secondary hover:text-destructive"
-                >
-                    <Trash2 className="h-4 w-4" />
-                </button>
             </div>
 
             {/* Chart Container */}

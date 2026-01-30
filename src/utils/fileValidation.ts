@@ -9,17 +9,17 @@ export const validateFile = (files: FileList | null): File | null => {
   const extension = file.name.split(".").pop()?.toLowerCase() || "";
 
   if (!validExtensions.includes(extension)) {
-    ToastError('File not supported', 'Please upload a file in CSV, XLS, or XLSX format.');
+    ToastError('Archivo no soportado', 'Por favor sube un archivo en formato CSV, XLS o XLSX.');
     return null;
   }
 
   if (file.size === 0) {
-    ToastError('File is empty', 'Please upload a non-empty file.');
+    ToastError('Archivo vacío', 'Por favor sube un archivo que no esté vacío.');
     return null;
   }
 
   if (file.size > 10 * 1024 * 1024) {
-    ToastError('File is too large', 'Please upload a file smaller than 10MB.');
+    ToastError('Archivo demasiado grande', 'Por favor sube un archivo menor a 10MB.');
     return null;
   }
 

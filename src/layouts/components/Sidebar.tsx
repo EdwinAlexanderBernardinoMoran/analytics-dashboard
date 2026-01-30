@@ -29,19 +29,19 @@ export default function Sidebar() {
   const allNavItems: NavItem[] = [
     {
       id: 'upload',
-      label: 'Upload file',
+      label: 'Subir archivo',
       icon: Upload,
       url: '/',
     },
     {
       id: 'analysis',
-      label: 'Analysis',
+      label: 'Análisis',
       icon: BarChart3,
       url: '/analysis',
     },
     {
       id: 'dashboard',
-      label: 'Graphics',
+      label: 'Panel',
       icon: LineChart,
       url: '/dashboard',
     },

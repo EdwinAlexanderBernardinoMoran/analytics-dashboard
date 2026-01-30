@@ -46,9 +46,9 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
             setAnalyses(analysisResult);
             return true;
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : 'Error uploading the file';
+            const errorMessage = err instanceof Error ? err.message : 'Error al subir el archivo.';
 
-            ToastError('Oops, something went wrong.', errorMessage);
+            ToastError('Vaya, algo salió mal.', errorMessage);
             setError(errorMessage);
             return false;
         } finally {

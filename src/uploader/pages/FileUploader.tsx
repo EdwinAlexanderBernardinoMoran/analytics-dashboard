@@ -1,73 +1,10 @@
-import { useContext, type ChangeEvent, type DragEvent } from "react"
-import { useState, useRef } from 'react';
-import { useNavigate } from "react-router";
-
 import { CustomJombotron } from "@/components/custom/CustomJombotron";
-import { AnalyticContext } from '../../context/AnalyticContext';
 import { CustomLoadingState } from "@/components/custom/CustomLoadingState";
 import { Upload, File, X } from 'lucide-react';
-
-import { validateFile } from "@/utils/fileValidation";
+import { useFileUploader } from "../hooks/useFileUploader";
 
 export default function FileUploader() {
-    const { isLoading, uploadFile } = useContext(AnalyticContext);
-    const [isDragActive, setIsDragActive] = useState(false);
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
-    const navigation = useNavigate();
-
-    const handleDrag = (event: DragEvent<HTMLDivElement>) => {
-
-        event.preventDefault();
-        event.stopPropagation();
-        if (event.type === 'dragenter' || event.type === 'dragover') {
-
-            setIsDragActive(true);
-        } else if (event.type === 'dragleave') {
-            setIsDragActive(false);
-        }
-    };
-
-    const handleDrop = (event: DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setIsDragActive(false);
-
-        const file = validateFile(event.dataTransfer.files);
-        if (!file) return;
-        handleFile(file);
-    };
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = validateFile(event.target.files);
-        if (!file) {
-            event.target.value = "";
-            return;
-        }
-        handleFile(file);
-    };
-
-    const handleFile = async (file: File) => {
-
-        setSelectedFile(file);
-
-        const response = await uploadFile(file);
-
-        if (!response) {
-            setSelectedFile(null);
-            return;
-        };
-
-        setSelectedFile(null);
-        navigation('/analysis');
-    };
-
-    const handleClear = () => {
-        setSelectedFile(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-    };
+    const { isLoading, isDragActive, selectedFile, fileInputRef, handleDrag, handleDrop, handleChange, handleClear } = useFileUploader();
 
     return (
         <>
@@ -76,7 +13,7 @@ export default function FileUploader() {
             {!isLoading && (
                 <div className="space-y-8">
                     <div className="space-y-2">
-                        <CustomJombotron title='Upload your data file' description='Our AI will automatically analyze your data and generate visual insights.' />
+                        <CustomJombotron title='Sube tu archivo de datos' description='Nuestro AI analizará automáticamente tus datos y generará visualizaciones.' />
                     </div>
 
                     <div className="space-y-6">
@@ -88,7 +25,7 @@ export default function FileUploader() {
                             onDrop={handleDrop}
                             className={`relative mx-auto max-w-2xl rounded-2xl border-2 border-dashed p-16 transition-all ${isDragActive
                                 ? 'border-primary bg-primary/5'
-                                : 'border-border bg-card hover:border-primary/50'
+                                : 'border-border bg-card hover:border-[#629af7]/50'
                                 }`}
                         >
                             {!selectedFile ? (
@@ -98,10 +35,10 @@ export default function FileUploader() {
                                     </div>
                                     <div className="space-y-3 text-center">
                                         <h3 className="text-2xl font-semibold text-foreground">
-                                            Drag your file here
+                                            Arrastra tu archivo aquí
                                         </h3>
                                         <p className="text-base text-muted-foreground">
-                                            or click to select from your device
+                                            o haga clic para seleccionar desde su dispositivo
                                         </p>
                                     </div>
                                     <input
@@ -113,12 +50,12 @@ export default function FileUploader() {
                                     />
                                     <button
                                         onClick={() => fileInputRef.current?.click()}
-                                        className="rounded-lg bg-primary px-8 py-3 font-medium text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+                                        className="rounded-lg bg-badge-bar px-8 py-3 font-medium text-primary-foreground transition-all hover:bg-badge-bar/70 active:scale-95"
                                     >
-                                        Select file
+                                        Seleccionar archivo
                                     </button>
                                     <p className="text-sm text-muted-foreground">
-                                        Supported formats: .csv, .xlsx
+                                        Formatos compatibles: .csv, .xlsx, .xls
                                     </p>
                                 </div>
                             ) : (

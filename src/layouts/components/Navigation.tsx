@@ -18,8 +18,8 @@ export const Navigation = ({ navItems, isActive, isCollapsed }: NavigationProps)
                         key={item.id}
 
                         className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-colors ${isActive(item.url)
-                            ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                            : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                            ? 'bg-sidebar-accent text-badge-bar'
+                            : 'text-gray-700 hover:bg-sidebar-accent hover:text-badge-bar'
                             }`}
                     >
 

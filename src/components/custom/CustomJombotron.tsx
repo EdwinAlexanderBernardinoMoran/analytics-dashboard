@@ -6,7 +6,7 @@ interface CustomJombotronProps {
 export const CustomJombotron = ({ title, description }: CustomJombotronProps) => {
     return (
         <>
-            <h2 className="text-balance text-3xl font-bold text-foreground">
+            <h2 className="text-balance text-3xl font-bold text-gray-800">
                 {title}
             </h2>
             <p className="mt-2 text-muted-foreground">
