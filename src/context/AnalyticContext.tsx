@@ -45,8 +45,8 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
 
             const formData = new FormData();
             formData.append('file', file);
-            // const analysisResult = await postFileUpload(formData);
-            // setAnalyses(analysisResult);
+            const analysisResult = await postFileUpload(formData);
+            setAnalyses(analysisResult);
             return true;
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'Error al subir el archivo.';
@@ -55,7 +55,7 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
             setError(errorMessage);
             return false;
         } finally {
-            // setIsLoading(false);
+            setIsLoading(false);
         }
     }
 
