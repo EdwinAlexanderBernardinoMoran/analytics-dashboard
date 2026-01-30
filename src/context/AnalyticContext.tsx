@@ -13,12 +13,14 @@ interface AnalyticContextProps {
     error: string | null;
     counChartSuggestions: number;
     chartData: ChartDataContext[];
+    addedCards: Set<string>;
 
     // Methods
     setLoading: (value: boolean) => void;
     uploadFile: (file: File) => Promise<boolean>;
     getChartData: (data: ChartDataAnalysis) => void;
     setCountChartSuggestion: () => void;
+    addCard: (chartId: string) => void;
 }
 
 export const AnalyticContext = createContext({} as AnalyticContextProps);
@@ -30,6 +32,7 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [countChartSuggestion, setCountChartSuggestion] = useState(0);
+    const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
 
     const handleLoading = (value: boolean) => {
         setIsLoading(value);
@@ -76,6 +79,10 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
         setCountChartSuggestion((prev) => prev + 1);
     }
 
+    const handleAddCard = (chartId: string) => {
+        setAddedCards(prev => new Set([...prev, chartId]));
+    }
+
     return <AnalyticContext value={{
         // state
         analyses: analyses,
@@ -83,12 +90,14 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
         error: error,
         counChartSuggestions: countChartSuggestion,
         chartData: chartData,
+        addedCards: addedCards,
 
         // Methods
         setLoading: handleLoading,
         uploadFile: handleUpload,
         getChartData: handleGetChartData,
         setCountChartSuggestion: handleSetCountChartSuggestion,
+        addCard: handleAddCard,
     }
 
     }>{children}</AnalyticContext>

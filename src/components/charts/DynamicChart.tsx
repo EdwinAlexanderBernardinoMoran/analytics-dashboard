@@ -12,7 +12,7 @@ import {
     type ChartOptions,
 } from 'chart.js';
 import { Line, Bar, Pie } from 'react-chartjs-2';
-import { shouldGroupData, groupDatasetsByMonth, groupByMonth } from '@/utils/chartDataProcessing';
+import { shouldGroupData, groupDatasetsByMonth, groupByMonth, formatCurrency } from '@/utils/chartDataProcessing';
 import type { Datasets } from '@/dashboard/interfaces/charts-response.interface';
 import type { ChartType } from '@/dashboard/interfaces/chart.interface.interface';
 
@@ -99,6 +99,22 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                 bodyColor: '#111827',
                 borderColor: '#E5E7EB',
                 borderWidth: 1,
+
+                // Agrega el simbolo de moneda al valor del tooltip
+                callbacks: {
+                    label: function (context: any) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += formatCurrency(context.parsed.y);
+                        } else if (context.parsed !== null) {
+                            label += formatCurrency(context.parsed);
+                        }
+                        return label;
+                    }
+                }
             }
         },
     };
@@ -165,6 +181,9 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                     },
                     ticks: {
                         color: 'hsl(var(--muted-foreground))',
+                        callback: function (value: any) {
+                            return formatCurrency(Number(value));
+                        }
                     },
                 },
                 x: {
@@ -220,6 +239,9 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                     },
                     ticks: {
                         color: 'hsl(var(--muted-foreground))',
+                        callback: function (value: any) {
+                            return formatCurrency(Number(value));
+                        }
                     },
                 },
                 x: {
@@ -231,6 +253,12 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                     },
                 },
             },
+            datasets: {
+                bar: {
+                    barPercentage: 0.8,      // Controla el ancho de la barra (0.0 - 1.0)
+                    categoryPercentage: 0.6, // Controla el espacio de la categoría (0.0 - 1.0)
+                }
+            }
         };
 
         return (
@@ -304,6 +332,9 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                 },
                 ticks: {
                     color: 'hsl(var(--muted-foreground))',
+                    callback: function (value: any) {
+                        return formatCurrency(Number(value));
+                    }
                 },
             },
             x: {
@@ -315,6 +346,12 @@ export default function DynamicChart({ chart_type, datasets }: DynamicChartProps
                 },
             },
         },
+        datasets: {
+            bar: {
+                barPercentage: 0.5,      // Controla el ancho de la barra (0.0 - 1.0)
+                categoryPercentage: 0.7, // Controla el espacio de la categoría (0.0 - 1.0)
+            }
+        }
     };
 
     return (

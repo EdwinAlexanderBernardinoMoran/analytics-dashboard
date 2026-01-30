@@ -82,3 +82,15 @@ export function groupDatasetsByMonth(
 export function shouldGroupData(dataPointsCount: number, threshold: number = 50): boolean {
     return dataPointsCount > threshold;
 }
+
+/**
+ * Formats a number as currency with dollar sign
+ */
+export function formatCurrency(value: number): string {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+    }).format(value);
+}
