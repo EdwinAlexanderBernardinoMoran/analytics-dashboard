@@ -41,7 +41,11 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
     const handleUpload = async (file: File) => {
         try {
             setIsLoading(true);
+            setAnalyses([]);
+            setChartData([]);
             setError(null);
+            setCountChartSuggestion(0);
+            setAddedCards(new Set());
 
             const formData = new FormData();
             formData.append('file', file);
