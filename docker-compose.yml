@@ -1,0 +1,10 @@
+services:
+  analyticsfront:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: analytics-front
+    ports:
+      - "5174:5174"
+    environment:
+      - VITE_API_URL=${VITE_API_URL}

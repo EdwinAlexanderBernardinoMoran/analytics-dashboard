@@ -4,7 +4,7 @@ import type { ApiChartsResponse } from "@/dashboard/interfaces/charts-response.i
 import { ChartMapper } from "../mappers/charts.mapper";
 
 export const getChartData = async (data: ChartParams): Promise<Chart> => {
-    const response = await Analytic<ApiChartsResponse>('/get-chart-data', {
+    const response = await Analytic<ApiChartsResponse>('/chart/data', {
         method: 'POST',
         data: data,
     })

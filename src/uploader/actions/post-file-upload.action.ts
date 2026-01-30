@@ -4,7 +4,7 @@ import type { ChartDataAnalysis } from "@/dashboard/interfaces/chart.interface.i
 import { AnalysisChartMapper } from "../mappers/analysis-chart.mapper";
 
 export const postFileUpload = async (file: FormData): Promise<ChartDataAnalysis[]> => {
-    const response = await Analytic<AnalyticResponse>('/analyze-file', {
+    const response = await Analytic<AnalyticResponse>('/analyses/file', {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
