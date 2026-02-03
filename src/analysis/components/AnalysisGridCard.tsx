@@ -1,5 +1,5 @@
 import type { ChartDataAnalysis } from "@/dashboard/interfaces/chart.interface.interface";
-import { BarChart3, CheckCircle, Eye, PieChart, Plus, ScatterChart, TrendingUp } from "lucide-react";
+import { BarChart3, CheckCircle, PieChart, Plus, ScatterChart, TrendingUp } from "lucide-react";
 
 interface AnalysisGridCardProps {
     item: ChartDataAnalysis;

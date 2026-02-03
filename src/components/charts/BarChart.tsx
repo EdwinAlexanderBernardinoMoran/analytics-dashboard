@@ -13,11 +13,11 @@ interface BarChartProps {
 export const BarChart = ({ labels, datasets, hasNestedDatasets, dataValues }: BarChartProps) => {
 
     const chartDatasets = hasNestedDatasets
-        ? datasets.datasets.map((dataset: any, index: number) => ({
+        ? datasets.datasets.map((dataset: any) => ({
             label: dataset.label || 'Datos',
             data: dataset.data,
-            backgroundColor: COLORS[index % COLORS.length],
-            borderColor: BORDER_COLORS[index % BORDER_COLORS.length],
+            backgroundColor: COLORS,
+            borderColor: BORDER_COLORS,
             borderWidth: 1,
             borderRadius: 8,
         }))
