@@ -83,14 +83,27 @@ export function shouldGroupData(dataPointsCount: number, threshold: number = 50)
     return dataPointsCount > threshold;
 }
 
+
 /**
- * Formats a number as currency with dollar sign
+ * Verify whether a value is a valid date in short ISO 8601 format (YYYY-MM-DD)
  */
-export function formatCurrency(value: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-    }).format(value);
+function isISODateString(value: string): boolean {
+    if (typeof value !== "string") return false;
+
+    const isoRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!isoRegex.test(value)) return false;
+
+    const date = new Date(value);
+    return !isNaN(date.getTime());
+}
+
+/**
+ * Verifica si un array contiene exclusivamente strings que representan fechas válidas en formato ISO (YYYY-MM-DD).
+ */
+export function isArrayOfISODateStrings(arr: Array<any>): boolean {
+    return (
+        Array.isArray(arr) &&
+        arr.length > 0 &&
+        arr.every(isISODateString)
+    );
 }

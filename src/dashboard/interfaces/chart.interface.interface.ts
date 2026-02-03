@@ -15,6 +15,8 @@ export interface ChartParams {
     chart_type: ChartType;
     x_axis: string;
     y_axis: string[] | string;
+    aggregation: string;
+    metric_label: string;
 }
 
 // Interface displaying the results of suggestions from the file information charts 

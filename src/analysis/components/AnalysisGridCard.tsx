@@ -85,13 +85,6 @@ export const AnalysisGridCard = ({ item, addedCards, handleAddCard }: AnalysisGr
                     )}
                 </button>
             </div>
-
-            {/* Preview subtle indicator */}
-            <div className="absolute right-4 top-4 opacity-0 transition-opacity group-hover:opacity-100">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <span className="text-xs font-bold text-primary/40"><Eye className="h-5 w-5" /></span>
-                </div>
-            </div>
         </div>
     )
 }

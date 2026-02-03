@@ -18,10 +18,5 @@ export const validateFile = (files: FileList | null): File | null => {
     return null;
   }
 
-  if (file.size > 10 * 1024 * 1024) {
-    ToastError('Archivo demasiado grande', 'Por favor sube un archivo menor a 10MB.');
-    return null;
-  }
-
   return file;
 }

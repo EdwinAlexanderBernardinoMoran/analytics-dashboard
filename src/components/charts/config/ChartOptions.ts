@@ -1,4 +1,3 @@
-import { formatCurrency } from "@/utils/chartDataProcessing";
 import type { ChartOptions } from "chart.js";
 
 export const getCommonOptions = (): ChartOptions<any> => ({
@@ -20,23 +19,7 @@ export const getCommonOptions = (): ChartOptions<any> => ({
             titleColor: '#111827',
             bodyColor: '#111827',
             borderColor: '#E5E7EB',
-            borderWidth: 1,
-
-            // Agrega el simbolo de moneda al valor del tooltip
-            callbacks: {
-                label: function (context: any) {
-                    let label = context.dataset.label || '';
-                    if (label) {
-                        label += ': ';
-                    }
-                    if (context.parsed.y !== null) {
-                        label += formatCurrency(context.parsed.y);
-                    } else if (context.parsed !== null) {
-                        label += formatCurrency(context.parsed);
-                    }
-                    return label;
-                }
-            }
+            borderWidth: 1
         }
     },
 });
@@ -47,7 +30,6 @@ export const getAxisScalesOptions = (showXGrid: boolean = true) => ({
         grid: { color: 'hsl(var(--border))' },
         ticks: {
             color: 'hsl(var(--muted-foreground))',
-            callback: (value: any) => formatCurrency(Number(value))
         },
     },
     x: {
@@ -55,6 +37,12 @@ export const getAxisScalesOptions = (showXGrid: boolean = true) => ({
             display: showXGrid,
             color: 'hsl(var(--border))'
         },
-        ticks: { color: 'hsl(var(--muted-foreground))' },
+        ticks: {
+            color: 'hsl(var(--muted-foreground))',
+            maxRotation: 45,
+            minRotation: 45,
+            autoSkip: true,
+            maxTicksLimit: 15,
+        },
     },
 });

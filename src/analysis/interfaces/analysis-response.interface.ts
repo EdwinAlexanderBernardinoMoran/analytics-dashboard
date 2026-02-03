@@ -21,4 +21,6 @@ export interface ChartSuggestion {
 export interface Parameters {
     x_axis: string;
     y_axis: string[] | string;
+    aggregation: string;
+    metric_label: string;
 }

@@ -1,10 +1,17 @@
 import { createContext, useState, type PropsWithChildren } from "react";
+import { AxiosError } from "axios";
 
 import { getChartData } from "@/analysis/actions/get-chart-sugesstion";
 import type { ChartDataAnalysis, ChartParams } from "@/dashboard/interfaces/chart.interface.interface";
 import type { ChartDataContext } from "@/dashboard/interfaces/charts-context.interface";
 import { postFileUpload } from "@/uploader/actions/post-file-upload.action";
 import { ToastError } from "@/utils/ToastError";
+
+interface ApiErrorResponse {
+    message?: string;
+    error?: string;
+    detail?: string;
+}
 
 interface AnalyticContextProps {
     // state
@@ -34,18 +41,22 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
     const [countChartSuggestion, setCountChartSuggestion] = useState(0);
     const [addedCards, setAddedCards] = useState<Set<string>>(new Set());
 
+    const resetAnalysisState = () => {
+        setIsLoading(true);
+        setAnalyses([]);
+        setChartData([]);
+        setError(null);
+        setCountChartSuggestion(0);
+        setAddedCards(new Set());
+    }
+
     const handleLoading = (value: boolean) => {
         setIsLoading(value);
     };
 
     const handleUpload = async (file: File) => {
         try {
-            setIsLoading(true);
-            setAnalyses([]);
-            setChartData([]);
-            setError(null);
-            setCountChartSuggestion(0);
-            setAddedCards(new Set());
+            resetAnalysisState()
 
             const formData = new FormData();
             formData.append('file', file);
@@ -53,7 +64,12 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
             setAnalyses(analysisResult);
             return true;
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : 'Error al subir el archivo.';
+            const error = err as AxiosError<ApiErrorResponse>;
+            const errorMessage = error.response?.data?.message
+                || error.response?.data?.error
+                || error.response?.data?.detail
+                || error.message
+                || 'Error al subir el archivo.';
 
             ToastError('Vaya, algo salió mal.', errorMessage);
             setError(errorMessage);
@@ -68,7 +84,9 @@ export const AnalyticContextProvider = ({ children }: PropsWithChildren) => {
             dataframe_id: data.dataframe_id,
             chart_type: data.chart_type,
             x_axis: data.parameters.x_axis,
-            y_axis: data.parameters.y_axis
+            y_axis: data.parameters.y_axis,
+            aggregation: data.parameters.aggregation,
+            metric_label: data.parameters.metric_label
         }
 
         const getChartDataResult = await getChartData(chartParams);

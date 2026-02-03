@@ -1,4 +1,4 @@
-import { groupByMonth, groupDatasetsByMonth, shouldGroupData } from "@/utils/chartDataProcessing";
+import { groupByMonth, groupDatasetsByMonth, isArrayOfISODateStrings, shouldGroupData } from "@/utils/chartDataProcessing";
 import { BORDER_COLORS, COLORS } from "./config/ChartColors";
 import { getAxisScalesOptions, getCommonOptions } from "./config/ChartOptions";
 import type { ChartOptions } from "chart.js";
@@ -15,7 +15,9 @@ export const LineChart = ({ labels, datasets, hasNestedDatasets, dataValues }: L
     let processedLabels = labels;
     let processedDatasets = hasNestedDatasets ? datasets.datasets : null;
 
-    if (shouldGroupData(labels.length)) {
+    const isDate = isArrayOfISODateStrings(labels);
+
+    if (shouldGroupData(labels.length) && isDate) {
         if (hasNestedDatasets) {
             // Group multiple datasets
             const grouped = groupDatasetsByMonth(labels, datasets.datasets);
