@@ -16,7 +16,7 @@ export const getCommonOptions = (): ChartOptions<any> => ({
         },
         tooltip: {
             backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            titleColor: '#111827',
+            titleColor: '#122e01',
             bodyColor: '#111827',
             borderColor: '#E5E7EB',
             borderWidth: 1
@@ -27,7 +27,7 @@ export const getCommonOptions = (): ChartOptions<any> => ({
 export const getAxisScalesOptions = (showXGrid: boolean = true) => ({
     y: {
         beginAtZero: true,
-        grid: { color: 'hsl(var(--border))' },
+        grid: { color: 'hsl(180, 14%, 71%)' },
         ticks: {
             color: 'hsl(var(--muted-foreground))',
         },
@@ -35,7 +35,7 @@ export const getAxisScalesOptions = (showXGrid: boolean = true) => ({
     x: {
         grid: {
             display: showXGrid,
-            color: 'hsl(var(--border))'
+            color: 'hsl(180, 14%, 71%)'
         },
         ticks: {
             color: 'hsl(var(--muted-foreground))',
