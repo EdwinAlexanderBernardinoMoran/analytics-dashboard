@@ -6,8 +6,6 @@ Esta plataforma permite cargar hojas de cálculo que son enviadas a una API para
 
 - Asegúrate de tener la [API de procesamiento analítico](https://github.com/EdwinAlexanderBernardinoMoran/analytical-processing-api) ejecutándose antes de iniciar este proyecto.
 
-- Los archivos aceptados para carga son hojas de cálculo (.xlsx, .xls, csv).
-
 ## 🛠️ Tecnologías
 
 - **Frontend**: React 19 + TypeScript
@@ -50,7 +48,7 @@ cp .env.example .env
 Edita el archivo `.env` y configura la URL de tu API:
 
 ```env
-VITE_API_URL="http://localhost:3000/api/v1"
+VITE_API_URL="http://localhost:8000/api/v1"
 ```
 
 4. **Levantar el proyecto con Docker**
@@ -79,7 +77,7 @@ docker compose down
 ## 🎯 Decisiones Técnicas
 
 ### React Router 7
-Implementamos React Router 7 para el manejo de rutas con soporte completo para TypeScript y características modernas como lazy loading de componentes. Proporciona una API declarativa y flexible para la navegación.
+Implementamos React Router 7 para el manejo de rutas con soporte completo para TypeScript y características modernas como lazy loading de componentes.
 
 ### TailwindCSS + Shadcn UI
 TailwindCSS permite un desarrollo rápido con clases utility-first, reduciendo el CSS personalizado. Shadcn UI complementa esto con componentes accesibles y customizables basados en Radix UI, evitando vendor lock-in ya que los componentes se copian directamente al proyecto.
@@ -94,7 +92,7 @@ Pnpm ofrece una instalación más rápida y eficiente en espacio que npm o yarn,
 El proyecto está organizado por módulos funcionales (uploader/, analysis/, dashboard/) en lugar de por tipo de archivo. Esta arquitectura facilita la escalabilidad, mantenimiento y permite que equipos trabajen en features independientes sin conflictos.
 
 ### Docker
-Docker garantiza consistencia entre entornos de desarrollo, testing y producción, eliminando el clásico "funciona en mi máquina". Simplifica el onboarding de nuevos desarrolladores.
+Docker garantiza consistencia entre entornos de desarrollo, testing y producción.
 
 ## 📁 Estructura del Proyecto
 
@@ -197,6 +195,3 @@ analytics-dashboard/
 **Edwin Alexander Bernardino Moran**
 
 - GitHub: [@EdwinAlexanderBernardinoMoran](https://github.com/EdwinAlexanderBernardinoMoran)
-
-- El puerto por defecto con Docker es `5174`, sin Docker es `5173`.
-- Los archivos aceptados para carga son hojas de cálculo (Excel, CSV).
